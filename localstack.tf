@@ -13,15 +13,15 @@ provider "aws" {
 }
 
 // LAMBDA FUNCTIONS
-//resource "aws_lambda_function" "dog_catcher_lambda" {
-//  function_name = "dogCatcher"
-//  filename      = "dogCatcher.zip"
-//  handler       = "main"
-//  role          = "fake_role"
-//  runtime       = "go1.x"
-//  timeout       = 5
-//  memory_size   = 128
-//}
+resource "aws_lambda_function" "dog_catcher_lambda" {
+  function_name = "dogCatcher"
+  filename      = "dogCatcher.zip"
+  handler       = "main"
+  role          = "fake_role"
+  runtime       = "go1.x"
+  timeout       = 5
+  memory_size   = 128
+}
 
 resource "aws_s3_bucket" "b" {
   bucket = "test-bucket"
