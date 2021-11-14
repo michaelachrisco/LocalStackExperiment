@@ -23,11 +23,11 @@ resource "aws_lambda_function" "dog_catcher_lambda" {
   memory_size   = 128
 }
 
-resource "aws_s3_bucket" "b" {
-  bucket = "test-bucket"
-  acl    = "private"
-
-  versioning {
-    enabled = true
-  }
-}
+//resource "aws_s3_bucket" "b" {
+//  bucket = "test-bucket"
+//  acl    = "private"
+//
+//  versioning {
+//    enabled = true
+//  }
+//}
