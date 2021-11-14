@@ -1,0 +1,38 @@
+version: 2.1
+jobs:
+  build:
+    docker:
+      - image: cimg/python:3.10.0
+      - image: localstack/localstack:latest
+    steps:
+      - checkout # check out the code in the project directory
+      - run: |
+          sudo apt update
+          sudo apt install awscli
+          pip install awsebcli --upgrade --user 
+          aws configure set aws_access_key_id fake_id
+          aws configure set aws_secret_access_key fake_access_key
+          aws configure set default_region ap-southeast-2
+          aws --endpoint-url=http://localhost:4566 --region ap-southeast-2 s3 mb s3://test-bucket
+      # - run:
+      #     command: awslocal s3 mb s3://test-bucket
+      - run:
+          command: echo "Execute your tests here :)"
+
+# version: 2.1
+# jobs:
+#   build:
+#     docker:
+#       - image: localstack/localstack:latest
+#   run-integration-tests:
+#     executor: localstack/localstack:latest
+#     steps:
+#       - localstack/startup
+#       - run:
+#           command: awslocal s3 mb s3://test-bucket
+#       - run:
+#           command: echo "Execute your tests here :)"
+# workflows:
+#   integration-test:
+#     jobs:
+#       - run-integration-tests
